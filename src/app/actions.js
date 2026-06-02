@@ -2,10 +2,17 @@
 
 import { revalidatePath } from 'next/cache';
 import { store } from '@/lib/data/store';
+import buildSeed from '@/lib/data/seed';
 
 // ---- Reads -----------------------------------------------------------------
 export async function getBoardData() {
-  return store.readAll();
+  try {
+    return await store.readAll();
+  } catch (e) {
+    // Never let a backend hiccup 500 the page — render the demo instead.
+    console.error('[getBoardData] backend read failed, serving seed:', e?.message || e);
+    return buildSeed();
+  }
 }
 
 // ---- Publications (items) --------------------------------------------------
