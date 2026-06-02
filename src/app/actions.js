@@ -3,11 +3,16 @@
 import { revalidatePath } from 'next/cache';
 import { store } from '@/lib/data/store';
 import buildSeed from '@/lib/data/seed';
+import { DEFAULT_TEAM, CUSTOMER_TYPES } from '@/lib/domain';
 
 // ---- Reads -----------------------------------------------------------------
 export async function getBoardData() {
   try {
-    return await store.readAll();
+    const data = await store.readAll();
+    // keep form dropdowns usable even against an un-seeded Supabase
+    if (!data.salespeople?.length) data.salespeople = DEFAULT_TEAM;
+    if (!data.customerTypes?.length) data.customerTypes = CUSTOMER_TYPES;
+    return data;
   } catch (e) {
     // Never let a backend hiccup 500 the page — render the demo instead.
     console.error('[getBoardData] backend read failed, serving seed:', e?.message || e);
