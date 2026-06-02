@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   Famies Publiceringsbord — design tokens
+   Brand: warm white · pink (#ff3d7f) · green (#12b886)   (logo palette, no black)
+   Type:  Fraunces (display) · Sora (UI) · JetBrains Mono (labels/figures)
+   =========================================================================== */
+
+:root {
+  /* surfaces */
+  --bg: #faf8f5;
+  --bg-2: #f3efe9;
+  --surface: #ffffff;
+  --ink: #17151a;
+  --ink-soft: #4a4a4a;
+  --ink-muted: #8a8580;
+  --line: #ece7df;
+  --line-strong: #ddd6cb;
+
+  /* brand */
+  --c-pink: #ff3d7f;
+  --c-pink-deep: #e11d6b;
+  --c-pink-soft: #ffe5ee;
+  --c-green: #12b886;
+  --c-green-bright: #2fd6a0;
+  --c-green-soft: #d6f7ea;
+
+  /* functional accents */
+  --c-violet: #7c3aed;  --c-violet-soft: #ede9fe;
+  --c-blue:   #2563eb;  --c-blue-soft:   #dbeafe;
+  --c-cyan:   #0891b2;  --c-cyan-soft:   #cffafe;
+  --c-amber:  #d97706;  --c-amber-soft:  #fef3c7;
+  --c-red:    #dc2626;  --c-red-soft:    #fee2e2;
+  --c-sand:   #b8895f;  --c-sand-soft:   #f5ece2;
+  --c-slate:  #64748b;  --c-slate-soft:  #eef2f6;
+
+  /* elevation */
+  --shadow-sm: 0 1px 2px rgba(40,30,20,.05);
+  --shadow: 0 6px 24px rgba(40,30,20,.07);
+  --shadow-lg: 0 18px 50px rgba(40,30,20,.12);
+  --ring: 0 0 0 3px rgba(255,61,127,.18);
+
+  --radius: 16px;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-pink: var(--c-pink);
+  --color-pink-deep: var(--c-pink-deep);
+  --color-pink-soft: var(--c-pink-soft);
+  --color-green: var(--c-green);
+  --color-green-soft: var(--c-green-soft);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-sora), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(255,61,127,.06), transparent 60%),
+    radial-gradient(1000px 600px at -10% 0%, rgba(18,184,134,.06), transparent 55%),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01";
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+::selection { background: var(--c-pink); color: #fff; }
+
+/* scrollbars */
+* { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+*::-webkit-scrollbar { height: 10px; width: 10px; }
+*::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 99px; }
+
+/* shared utility classes */
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+.mono { font-family: var(--font-mono); letter-spacing: .02em; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.card-hover { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .03em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 999px; white-space: nowrap;
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  font-family: var(--font-sans); font-weight: 600; font-size: 13px;
+  padding: 9px 15px; border-radius: 11px; cursor: pointer;
+  border: 1px solid transparent; transition: all .16s ease; white-space: nowrap;
+}
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: var(--c-pink); box-shadow: var(--shadow); }
+.btn-pink { background: var(--c-pink); color: #fff; }
+.btn-pink:hover { background: var(--c-pink-deep); }
+.btn-green { background: var(--c-green); color: #fff; }
+.btn-green:hover { filter: brightness(.95); }
+.btn-outline { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+.btn-outline:hover { border-color: var(--ink); }
+.btn-ghost { background: transparent; color: var(--ink-soft); }
+.btn-ghost:hover { background: var(--bg-2); color: var(--ink); }
+.btn-danger { background: var(--c-red-soft); color: var(--c-red); }
+.btn-danger:hover { background: var(--c-red); color: #fff; }
+
+.field-label {
+  display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px;
+}
+.field-input, .field-select, .field-textarea {
+  width: 100%; font-family: var(--font-sans); font-size: 14px; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line-strong);
+  border-radius: 11px; padding: 10px 12px; transition: border-color .15s, box-shadow .15s;
+}
+.field-input:focus, .field-select:focus, .field-textarea:focus {
+  outline: none; border-color: var(--c-pink); box-shadow: var(--ring);
+}
+.field-textarea { min-height: 80px; resize: vertical; }
+
+.tab {
+  position: relative; font-family: var(--font-sans); font-size: 13.5px; font-weight: 600;
+  color: var(--ink-muted); padding: 12px 4px; cursor: pointer; background: none; border: none;
+  white-space: nowrap; transition: color .15s;
+}
+.tab:hover { color: var(--ink); }
+.tab[data-active="true"] { color: var(--ink); }
+
+.tab-badge {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700; background: var(--bg-2);
+  color: var(--ink-soft); padding: 1px 6px; border-radius: 999px; margin-left: 6px;
+}
+.tab[data-active="true"] .tab-badge { background: var(--c-pink); color: #fff; }
+
+@keyframes pop-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+.pop-in { animation: pop-in .22s cubic-bezier(.2,.7,.2,1) both; }
+
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.fade-in { animation: fade-in .2s ease both; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
