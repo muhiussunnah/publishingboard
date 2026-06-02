@@ -22,7 +22,7 @@ export default function Tabs({ view, setView, counts }) {
               {t(label)}
               {badge != null && badge > 0 && <span className="tab-badge">{badge}</span>}
               {active && (
-                <motion.span layoutId="tab-underline" className="absolute left-0 right-0 -bottom-px h-[2.5px] rounded-full" style={{ background: 'var(--c-pink)' }} />
+                <motion.span layoutId="tab-underline" className="absolute left-0 right-0 -bottom-px h-[2.5px] rounded-full" style={{ background: 'var(--grad)' }} />
               )}
             </button>
           );
