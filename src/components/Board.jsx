@@ -23,6 +23,7 @@ import CustomerModal from '@/components/modals/CustomerModal';
 import VideoModal from '@/components/modals/VideoModal';
 import LeadModal from '@/components/modals/LeadModal';
 import DistributeModal from '@/components/modals/DistributeModal';
+import ErrorBoundary from '@/components/ui/ErrorBoundary';
 
 const BoardCtx = createContext(null);
 export const useBoard = () => useContext(BoardCtx);
@@ -175,7 +176,9 @@ export default function Board({ initialData, backend }) {
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
               >
-                <ActiveView />
+                <ErrorBoundary>
+                  <ActiveView />
+                </ErrorBoundary>
               </motion.div>
             </AnimatePresence>
           </main>

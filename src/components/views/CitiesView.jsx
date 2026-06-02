@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { MapPin, Map } from 'lucide-react';
+import { MapPin, Map as MapIcon } from 'lucide-react';
 import { useBoard } from '@/components/Board';
 import ItemCard from '@/components/cards/ItemCard';
 import { CardGrid, EmptyState } from '@/components/ui/Bits';
@@ -21,7 +21,7 @@ export default function CitiesView() {
     return [...map.entries()].map(([city, list]) => ({ city, list })).sort((a, b) => b.list.length - a.list.length);
   }, [items]);
 
-  if (!cities.length) return <EmptyState icon={Map} title={t('cities.empty')} />;
+  if (!cities.length) return <EmptyState icon={MapIcon} title={t('cities.empty')} />;
 
   const current = cities.find((c) => c.city === active);
 
