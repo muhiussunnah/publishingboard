@@ -8,8 +8,8 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['400', '500', '
 const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-jetbrains', display: 'swap' });
 
 export const metadata = {
-  title: 'Famies · Publiceringsbord',
-  description: 'Planera, godkänn och publicera — Famies publiceringsbord. Next.js + Supabase.',
+  title: 'Famies · Publishing Board',
+  description: 'Plan, approve and publish — the Famies publishing board. Built with Next.js + Supabase.',
 };
 
 export const viewport = { themeColor: '#ffffff' };

@@ -4,7 +4,8 @@
 // ============================================================================
 
 export const LANGS = ['sv', 'en'];
-export const DEFAULT_LANG = 'sv';
+// English is the default; clients can switch to Swedish anytime (persisted).
+export const DEFAULT_LANG = 'en';
 
 export const messages = {
   sv: {
