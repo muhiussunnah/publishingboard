@@ -33,6 +33,13 @@ create policy "recurring_all" on public.recurring for all to anon, authenticated
 drop policy if exists "meta_all" on public.meta;
 create policy "meta_all" on public.meta for all to anon, authenticated using (true) with check (true);
 
--- Realtime (so the shared board live-updates for everyone)
-alter publication supabase_realtime add table public.tasks;
-alter publication supabase_realtime add table public.recurring;
+-- Realtime (so the shared board live-updates for everyone) — idempotent
+do $$
+begin
+  if not exists (select 1 from pg_publication_tables where pubname='supabase_realtime' and tablename='tasks') then
+    alter publication supabase_realtime add table public.tasks;
+  end if;
+  if not exists (select 1 from pg_publication_tables where pubname='supabase_realtime' and tablename='recurring') then
+    alter publication supabase_realtime add table public.recurring;
+  end if;
+end $$;
