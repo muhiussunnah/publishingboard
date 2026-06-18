@@ -9,7 +9,7 @@ export default function Header({ backend, onNew, onDistribute }) {
   const live = backend === 'supabase';
 
   return (
-    <header className="sticky top-0 z-40 glass">
+    <header className="sticky top-16 z-30 glass">
       <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-7">
         <div className="flex items-center justify-between gap-4 py-3.5">
           <div className="flex items-center gap-3 min-w-0">

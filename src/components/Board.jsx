@@ -162,7 +162,7 @@ export default function Board({ initialData, backend }) {
 
   return (
     <BoardCtx.Provider value={ctx}>
-      <div className="min-h-dvh">
+      <div className="min-h-dvh pt-16">
         <Header backend={backend} onNew={() => ctx.openItem()} onDistribute={ctx.openDistribute} />
         <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
           <Stats />
